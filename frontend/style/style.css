@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
+body{
+    position: relative;
+    
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -45,4 +48,62 @@ header{
 a{
     text-decoration: none;
     color: black;
+}
+.img{
+    position: fixed;
+    width: 10%;
+    right: 4%;
+    bottom: 4%;
+    cursor: pointer;
+}
+#title{
+    display: block;
+    padding: 5px;
+    width: 80%;
+    margin: 5% auto;
+    font-size: 20px;
+    border-radius: 10px;
+}
+#desc{
+    display: block;
+    padding: 5px;
+    height: 70%;
+    width: 80%;
+    margin: 5% auto;
+    resize: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+#submit{
+    margin: 5% auto;
+    width: 30%;
+    height: 5%;
+    padding: 2%;
+    background: rgb(255, 111, 9);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    
+}
+#post{
+    border: 1px solid;
+    width: 60%;
+    margin: auto;
+    text-align: center; 
+    border-radius: 10%;
+    background-color:#fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+}
+#h3{
+    margin-top: 3%;
+}
+#return{
+    background-color: rgb(255, 111, 9);
+    border: none;
+    margin-left: 10%;
+    padding: 4px 8px;
+    border-radius: 5px;
+    cursor: pointer;
 }

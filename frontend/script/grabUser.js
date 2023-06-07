@@ -11,11 +11,6 @@ function mudar(){
 }
 function carregar(){
      username2 = localStorage.getItem('username')
-    if(username2 == null || username2 == ''){
-        document.getElementById('main').innerHTML =  "Please log in or sign in"
-    }else{
-        document.getElementById('main').innerHTML = `Username: ${username2}<br><button onclick = 'zerar()'>Log Out</button>`
-    }
 }
 
 function zerar(){
