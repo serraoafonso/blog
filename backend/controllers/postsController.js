@@ -1,9 +1,17 @@
-const express = require('express');
+const postsModel = require('../models/postModel')
 
-const getAll = (req, res)=>{
-  
+const getAll = async(req, res)=>{
+    const posts = await postsModel.getAll()
+    const username = await postsModel.getId()
+    return res.status(200).json(username)
+    
+}
+
+const postAll = async()=>{
+
 }
 
 module.exports = {
-    getAll
+    getAll,
+    postAll
 }

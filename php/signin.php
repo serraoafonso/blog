@@ -66,6 +66,6 @@ if($passou){
 </body>
 
 <script src="../frontend/script/visibilidade.js"></script>
-<script src="../frontend/script/grabUser.js"></script>
+<script src="../backend/grabUser.js"></script>
 
 </html>

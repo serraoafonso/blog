@@ -1,19 +1,17 @@
 let pre_username;
 let username = '';
-let username2;// variavel com username certo
+let username2;
 function salvar(){
     pre_username = document.getElementById('username').value;
     localStorage.setItem('username', pre_username)
 }
 function mudar(){
-  username = localStorage.getItem('username')
- console.log(username)
+  username = 'afonsoserrao'//localStorage.getItem('username')//variavel certa
+  return username
+
 }
 function carregar(){
      username2 = localStorage.getItem('username')
 }
 
-function zerar(){
-   localStorage.removeItem('username');
-   carregar()
-}
+module.exports = {mudar}
