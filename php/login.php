@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
 
     }catch(mysqli_sql_exception){
 
-        echo "<div class='aviso' id='aviso'>Could not sign in!<button id='ok'><a href='../frontend/pages/login.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+        echo "<div class='aviso' id='aviso'>Could not sign in!<button id='ok'><a href='../frontend/pages/login.html' class='bom'>OK</a></button></div>";
     }
 
     $sql = "SELECT * FROM users WHERE username_users = '$username'";
@@ -43,14 +43,19 @@ if(isset($_POST['submit'])){
 
             if(password_verify($password, $stored_hash)){
 
-                echo "<div class='aviso' id='aviso'>Loged in sucessful! <button id='ok' onclick='mudar()'><a href='../frontend/index.html' onclick='mudar()'>OK</a></button></div></div>";
-                $_SESSION['username'] = $username;
+                $sql2 = "UPDATE currentuser SET username = '$username' WHERE id = 1";
+                mysqli_query($conn, $sql2);
+
+                echo "<div class='aviso' id='aviso'>Loged in sucessful! <button id='ok'><a href='../frontend/index.html' onclick='confirmar()'>OK</a></button></div></div>";
+                
+                
+
                     }
                     else{
-                        echo "<div class='aviso' id='aviso'>Password or username incorrect<button id='ok'><a href='../frontend/pages/login.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+                        echo "<div class='aviso' id='aviso'>Password or username incorrect<button id='ok'><a href='../frontend/pages/login.html' class='bom'>OK</a></button></div>";
                     }}
         else{
-            echo "<div class='aviso' id='aviso'>Password or username incorrect<button id='ok'><a href='../frontend/pages/login.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+            echo "<div class='aviso' id='aviso'>Password or username incorrect<button id='ok'><a href='../frontend/pages/login.html' class='bom'>OK</a></button></div>";
         }
         mysqli_close($conn);
     }
@@ -58,5 +63,6 @@ if(isset($_POST['submit'])){
 ?>
 </body>
 <script src="../frontend/script/visibilidade.js"></script>
-<script src="../backend/grabUser.js"></script>
+
+<script src="../frontend/script/grabUser2.js"></script>
 </html>

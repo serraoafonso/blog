@@ -40,20 +40,23 @@ if(isset($_POST['submit'])){
     try{
         $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
     }catch(mysqli_sql_exception){
-        echo "<div class='aviso' id='aviso'>Could not sign in!<button id='ok'><a href='../frontend/pages/signin.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+        echo "<div class='aviso' id='aviso'>Could not sign in!<button id='ok'><a href='../frontend/pages/signin.html' class='bom'>OK</a></button></div>";
         $passou = false;
     }
 
    
     $sql = "INSERT INTO users (username_users, hashed_password_users, email_users) VALUES ('$username', '$hashed_password', '$email')";
+    $sql2 = "UPDATE currentuser SET username = '$username' WHERE id = 1";
 
 if($passou){
     try{
     mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql2);
+    
 
-    echo "<div class='aviso' id='aviso' onmousemove='mudar()'>Signed in sucessful!<button id='ok' class='bom'  onclick='mudar()'><a href='../frontend/index.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+    echo "<div class='aviso' id='aviso'>Signed in sucessful!<button id='ok' class='bom'  onclick='confirmar()'><a href='../frontend/index.html' class='bom' onclick='confirmar()'>OK</a></button></div>";
     }catch(mysqli_sql_exception){
-        echo "<div class='aviso' id='aviso'>Could not sign in! Username or email already in use.<button id='ok'><a href='../frontend/pages/signin.html' class='bom' onclick='mudar()'>OK</a></button></div>";
+        echo "<div class='aviso' id='aviso'>Could not sign in! Username or email already in use.<button id='ok'><a href='../frontend/pages/signin.html' class='bom'>OK</a></button></div>";
     }
 
 }
@@ -66,6 +69,7 @@ if($passou){
 </body>
 
 <script src="../frontend/script/visibilidade.js"></script>
-<script src="../backend/grabUser.js"></script>
+
+<script src="../frontend/script/grabUser2.js"></script>
 
 </html>

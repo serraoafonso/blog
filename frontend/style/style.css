@@ -107,3 +107,69 @@ a{
     border-radius: 5px;
     cursor: pointer;
 }
+
+main{
+    border: 2px solid lightgrey;
+    width: 80%;
+    margin: auto; 
+    margin-top: 5%;
+    border-radius: 10px;
+position: relative;
+}
+#userDate{
+    border-bottom: 2px solid lightgrey ;
+    display: flex;
+    height: 30px;
+    padding: 3%;
+    align-items: center;
+}
+#user{
+  margin-left: 5%;
+  
+}
+#data{
+  position: absolute;
+  right: 15%;
+}
+#titulo{
+    border: 1px solid lightgray;
+    width: 85%;
+    font-size: 22px;
+    font-weight: bold;
+    word-wrap: break-word;
+    margin: 3% auto;
+    padding: 1.5%;
+    border-radius: 10px;
+}
+#descricao{
+    border: 1px solid lightgrey;
+    width: 85%;
+    margin: auto;
+    word-wrap: break-word;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    word-spacing: 2.5px;
+    margin-bottom: 3%;
+    padding: 2%;
+    border-radius: 10px;
+}
+.trash{
+    background-color: rgb(225, 43, 43);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.edit{
+    background-color: rgb(255, 111, 9);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn{
+    margin-bottom: 1%;
+    margin-top: -2%;
+    text-align: right;
+    margin-right: 2%;
+    
+}
