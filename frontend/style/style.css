@@ -17,7 +17,8 @@ header{
     align-items: center;
     border-bottom: 1px solid lightgrey;
 }
-.titulo{
+
+.tituloh1{
     flex: 30%;
     text-align: center;
 }
@@ -95,6 +96,7 @@ a{
     background-color:#fff;
     border: none;
     box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+    
 }
 #h3{
     margin-top: 3%;
@@ -116,6 +118,32 @@ main{
     border-radius: 10px;
 position: relative;
 }
+.titulo{
+    border: 1px solid lightgray;
+    width: 85%;
+    font-size: 22px;
+    font-weight: bold;
+    word-wrap: break-word;
+    margin: 3% auto;
+    padding: 1,5%;
+    border-radius: 10px;
+    position: relative;
+
+}
+.descricao{
+    border: 1px solid lightgrey;
+    width: 85%;
+    margin: auto;
+    word-wrap: break-word;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    word-spacing: 2.5px;
+    margin-bottom: 3%;
+    padding: 2%;
+    border-radius: 10px;
+    position: relative;
+}
 #userDate{
     border-bottom: 2px solid lightgrey ;
     display: flex;
@@ -130,29 +158,6 @@ position: relative;
 #data{
   position: absolute;
   right: 15%;
-}
-#titulo{
-    border: 1px solid lightgray;
-    width: 85%;
-    font-size: 22px;
-    font-weight: bold;
-    word-wrap: break-word;
-    margin: 3% auto;
-    padding: 1.5%;
-    border-radius: 10px;
-}
-#descricao{
-    border: 1px solid lightgrey;
-    width: 85%;
-    margin: auto;
-    word-wrap: break-word;
-    font-size: 19px;
-    line-height: 25px;
-    letter-spacing: 1px;
-    word-spacing: 2.5px;
-    margin-bottom: 3%;
-    padding: 2%;
-    border-radius: 10px;
 }
 .trash{
     background-color: rgb(225, 43, 43);
@@ -172,4 +177,24 @@ position: relative;
     text-align: right;
     margin-right: 2%;
     
+}
+.editfield{
+    border: 1px solid lightgray;
+    padding: 1.5%;
+    top: 0px;
+    left: 0px;
+    font-size: 22px;
+    word-wrap: break-word;
+    border-radius: 10px;
+    width: 100%;
+    
+    
+}
+
+#editTitle{
+    font-weight: bold;
+    
+}
+#editDesc{
+    resize: none;
 }

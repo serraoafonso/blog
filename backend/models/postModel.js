@@ -13,6 +13,11 @@ const getUsername = async()=>{
   return username
 }
 
+const logOut = async()=>{
+    const rows = await connection.execute("UPDATE currentuser SET username='' WHERE id=1");
+    return rows
+}
+
 const getId = async()=>{
     const rows = await connection.execute('SELECT id_users FROM users WHERE username_users = ?', [await getUsername()])
     const idUser =  rows[0][0].id_users
@@ -38,9 +43,13 @@ const editPost = async(id, body)=>{
 }
 
 
+
+
 module.exports = {
     getAll,
     makePost,
     deletePost,
-    editPost
+    editPost,
+    logOut,
+    getUsername
 }
