@@ -4,7 +4,6 @@ tirarUser()
 async function tirarUser(){
   let response = await fetch('http://localhost:3000/posts/username');
   currentUsername = await response.json()
-  console.log(currentUsername)
 }
 
 async function logout(){
@@ -23,7 +22,7 @@ async function logar(){
   await tirarUser()
   }
   if(currentUsername != ''){
-    document.getElementById('header').innerHTML= `<div class="tituloh1"><h1>MyBlog</h1></div>Loged with: ${currentUsername}<button id='log'>Log out</button>`
+    document.getElementById('header').innerHTML= `<div class="tituloh1"><h1>MyBlog</h1></div><div id='logout'>Loged with: ${currentUsername}<button id='log'>Log out</button></div>`
     document.getElementById('log').addEventListener('click', ()=>logout())
     a = false
   }else{
@@ -33,17 +32,24 @@ async function logar(){
 
 
 function postar(){
-    document.getElementById('a').innerHTML = "<div id='post'><div id='h3'<h2>Create a new Post</h2></div><form><input type='text' id='title' maxlength='30' width='30' placeholder='Maximum characters: 30'><textarea type='text' id='desc' maxlength='255' rows='8' cols='30' placeholder='Maximum characters: 255'></textarea><input type='submit' id='submit' value='Submit'><input type='submit' value='Return' id='return'></form></div>"
+    document.getElementById('a').innerHTML = "<div id='post'><div id='h3'<h2>Create a new Post</h2></div><form><input type='text' id='title' maxlength='30' width='30' placeholder='Maximum characters: 30'><textarea type='text' id='desc' maxlength='255' rows='8' cols='30' placeholder='Maximum characters: 255'></textarea><input type='submit' id='submit' value='Submit' onclick='preparePost()'><input type='submit' value='Return' id='return' onclick='tirar()'></form></div>"
 
-    document.getElementById('submit').addEventListener('click',()=>createPost(document.getElementById('title').value, document.getElementById('desc').value))
+    /*document.getElementById('submit').addEventListener('click',()=>createPost(document.getElementById('title').value, document.getElementById('desc').value))*/
 }
+
+function preparePost(){
+  let titulo = document.getElementById('title').value;
+  let desc = document.getElementById('desc').value
+  if((titulo =='' || titulo == undefined) || (desc=='' || desc == undefined)){
+    alert('Please fill all the gaps.')
+  }else{
+  createPost(titulo, desc)
+}}
+
 function tirar(event){
   event.preventDefault()
     document.getElementById('post').style.visibility = 'hidden';
 }
-
-
-
 
 const buscarPosts = async()=>{
     const response = await fetch('http://localhost:3000/posts');
@@ -52,17 +58,6 @@ const buscarPosts = async()=>{
     mostrarPosts(posts)
     
     
-}
-
-const createElement =(tag, innerText = '', innerHTML = '')=>{//faz o valor padrao do inner text vazio
-  const element = document.createElement(tag);
-  if(innerText){
-  element.innerText = innerText
-  };
-  if(innerHTML){
-  element.innerHTML = innerHTML;
-  }
-  return element
 }
 
 const mostrarPosts = async(posts)=>{
@@ -92,23 +87,26 @@ const mostrarPosts = async(posts)=>{
         ${post.desc_posts}
       </div>
       <div class="btn">
-        <button class="edit" id='edit-${idposts_posts}'>
+        <button class="edit" id='edit-${idposts_posts}' onclick="prepararEdit()">
+        <span class='spanbtn pencil'>
+        ${idposts_posts}
+        </span>
           <span class="material-symbols-outlined">edit</span>
         </button>
-        <button class="trash" id='delete-${idposts_posts}'>
+        <button class="trash" id='delete-${idposts_posts}' onclick="prepararDelete()">
+        <span class='spanbtn delete'>
+        ${idposts_posts}
+        </span>
           <span class="material-symbols-outlined">delete</span>
         </button>
       </div>
+      
     </main>`;
   
     
-/*
-    document.getElementById(`edit-${idposts_posts}`).addEventListener('click', () => editar(idposts_posts));
-    document.getElementById(`delete-${idposts_posts}`).addEventListener('click', () => apagar(idposts_posts));*/
-    document.getElementById(`edit-${idposts_posts}`).onclick = () => editar(idposts_posts);
-    
-    document.getElementById(`delete-${idposts_posts}`).onclick = () => apagar(idposts_posts);
 
+    document.getElementById(`edit-${idposts_posts}`).addEventListener('click', () => prepararEdit());
+    document.getElementById(`delete-${idposts_posts}`).addEventListener('click', () => prepararDelete());
 
 }
 else{
@@ -130,6 +128,24 @@ else{
 
 }
 
+function prepararEdit(){
+  /*let idCompleto = e.target.id
+  let id = idCompleto.substring(6)
+  console.log(idCompleto)
+  console.log(id)*/
+  let id= event.target.textContent;
+  let idReal = id.substring(9, 11)
+  //console.log(idReal)
+  editar(idReal)
+  
+}
+function prepararDelete(){
+  let id= event.target.textContent;
+  let idReal = id.substring(9, 11)
+  //console.log(idReal)
+  apagar(idReal)
+}
+
 window.addEventListener('load', ()=>buscarPosts())
 
 
@@ -147,8 +163,7 @@ const loadPosts = async()=>{
 }
 
 const createPost = async(titulo, desc)=>{
-  event.preventDefault()
-  console.log(titulo, desc)
+  document.getElementById('a').innerHTML = ''
  const post = {
   title: titulo,
   desc: desc
@@ -160,34 +175,40 @@ await fetch('http://localhost:3000/posts', {
 })
 loadPosts()
 }
-
 const editar = (id)=>{
-console.log(id)
+ 
   document.getElementById(`titulo-${id}`).style.padding ='0px'
   document.getElementById(`titulo-${id}`).style.border ='none'
   document.getElementById(`descricao-${id}`).style.padding ='0px'
   document.getElementById(`descricao-${id}`).style.border ='none'
 
+
   let titleValue = document.getElementById(`titulo-${id}`).textContent;
   document.getElementById(`titulo-${id}`).innerHTML = '<input type="text" class="editfield" id="editTitle">'
   document.getElementById('editTitle').value = titleValue;
 
-
-  
+    
 
   let descValue = document.getElementById(`descricao-${id}`).textContent
   document.getElementById(`descricao-${id}`).innerHTML = '<textarea  class = "editfield" id="editDesc"></textarea>'
   document.getElementById('editDesc').value = descValue;
+ 
 
   let titulo = '';
   document.getElementById('editTitle').addEventListener('keypress', function (event) {
     if (event.keyCode === 13) {
       titulo = document.getElementById(`editTitle`).value;
-      document.getElementById(`titulo-${id}`).innerHTML = titulo;
       desc = document.getElementById('editDesc').value;
-      document.getElementById(`descricao-${id}`).innerHTML = desc;
-
+      if((titulo =='' || titulo == undefined) || (desc=='' || desc == undefined)){
+        document.getElementById(`descricao-${id}`).innerHTML = titleValue;
+        document.getElementById(`titulo-${id}`).innerHTML = descValue;
+        alert('Please fill all the gaps.')
+      }else{
+        document.getElementById(`titulo-${id}`).innerHTML = titulo;
+        document.getElementById(`descricao-${id}`).innerHTML = desc;
       editTask(titulo, desc, id);
+      
+    }
     }
   });
 
@@ -195,20 +216,22 @@ console.log(id)
   document.getElementById('editDesc').addEventListener('keypress', function (event) {
     if (event.keyCode === 13) {
       titulo = document.getElementById('editTitle').value;
-      document.getElementById(`titulo-${id}`).innerHTML = titulo;
       desc = document.getElementById('editDesc').value;
-      document.getElementById(`descricao-${id}`).innerHTML = desc;
-
+      if((titulo =='' || titulo == undefined) || (desc=='' || desc == undefined || desc == ' ')){
+        document.getElementById(`descricao-${id}`).innerHTML = titleValue;
+        document.getElementById(`titulo-${id}`).innerHTML = descValue;
+        alert('Please fill all the gaps.')
+      }else{
+        document.getElementById(`titulo-${id}`).innerHTML = titulo;
+        document.getElementById(`descricao-${id}`).innerHTML = desc;
       editTask(titulo, desc, id);
-    }
+    }}
   });
   
   
-  
-}//tentar fazer com que o editar fique todo na mesma funcao
+}
 
 const editTask = async(titulo, desc, id)=>{
-  console.log(titulo, desc, id)
   const post = {
     title: titulo,
     desc: desc

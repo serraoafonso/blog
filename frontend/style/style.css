@@ -18,10 +18,7 @@ header{
     border-bottom: 1px solid lightgrey;
 }
 
-.tituloh1{
-    flex: 30%;
-    text-align: center;
-}
+
 .menu{
     flex:70%;
     display: flex;
@@ -87,17 +84,7 @@ a{
     font-size: 17px;
     
 }
-#post{
-    border: 1px solid;
-    width: 60%;
-    margin: auto;
-    text-align: center; 
-    border-radius: 10%;
-    background-color:#fff;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
-    
-}
+
 #h3{
     margin-top: 3%;
 }
@@ -110,14 +97,7 @@ a{
     cursor: pointer;
 }
 
-main{
-    border: 2px solid lightgrey;
-    width: 80%;
-    margin: auto; 
-    margin-top: 5%;
-    border-radius: 10px;
-position: relative;
-}
+
 .titulo{
     border: 1px solid lightgray;
     width: 85%;
@@ -159,23 +139,28 @@ position: relative;
   position: absolute;
   right: 15%;
 }
+/*
 .trash{
     background-color: rgb(225, 43, 43);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 30px;
 }
 .edit{
     background-color: rgb(255, 111, 9);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+    font-size: 30px;
+    
+}*/
 .btn{
     margin-bottom: 1%;
     margin-top: -2%;
     text-align: right;
     margin-right: 2%;
+    font-size: 30px;
     
 }
 .editfield{
@@ -195,6 +180,4 @@ position: relative;
     font-weight: bold;
     
 }
-#editDesc{
-    resize: none;
-}
+
